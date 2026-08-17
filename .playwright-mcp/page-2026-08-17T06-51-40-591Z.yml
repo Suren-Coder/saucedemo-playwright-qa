@@ -1,0 +1,58 @@
+- generic [ref=e264]:
+  - generic [ref=e265]:
+    - generic [ref=e266]:
+      - generic [ref=e267]:
+        - generic [ref=e268]:
+          - button "Open Menu" [ref=e269] [cursor=pointer]
+          - img "Open Menu" [ref=e270]
+        - generic [ref=e271]: Swag Labs
+        - generic [ref=e273]: "3"
+      - generic [ref=e276]: Your Cart
+    - generic [ref=e279]:
+      - generic [ref=e280]:
+        - generic [ref=e281]: QTY
+        - generic [ref=e282]: Description
+        - generic [ref=e283]:
+          - generic [ref=e284]: "1"
+          - generic [ref=e285]:
+            - link "Sauce Labs Backpack" [ref=e286] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e288]: carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.
+            - generic [ref=e289]:
+              - generic [ref=e290]: $29.99
+              - button "Remove" [ref=e291] [cursor=pointer]
+        - generic [ref=e292]:
+          - generic [ref=e293]: "1"
+          - generic [ref=e294]:
+            - link "Sauce Labs Bike Light" [ref=e295] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e297]: A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.
+            - generic [ref=e298]:
+              - generic [ref=e299]: $9.99
+              - button "Remove" [ref=e300] [cursor=pointer]
+        - generic [ref=e301]:
+          - generic [ref=e302]: "1"
+          - generic [ref=e303]:
+            - link "Sauce Labs Bolt T-Shirt" [ref=e304] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e306]: Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.
+            - generic [ref=e307]:
+              - generic [ref=e308]: $15.99
+              - button "Remove" [ref=e309] [cursor=pointer]
+      - generic [ref=e310]:
+        - button [ref=e311] [cursor=pointer]:
+          - img "Go back" [ref=e312]
+          - text: Continue Shopping
+        - button "Checkout" [ref=e313] [cursor=pointer]
+  - contentinfo [ref=e314]:
+    - list [ref=e315]:
+      - listitem [ref=e316]:
+        - link "Twitter" [ref=e317] [cursor=pointer]:
+          - /url: https://twitter.com/saucelabs
+      - listitem [ref=e318]:
+        - link "Facebook" [ref=e319] [cursor=pointer]:
+          - /url: https://www.facebook.com/saucelabs
+      - listitem [ref=e320]:
+        - link "LinkedIn" [ref=e321] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/sauce-labs/
+    - generic [ref=e322]: © 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy
