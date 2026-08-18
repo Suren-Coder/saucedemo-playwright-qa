@@ -236,7 +236,7 @@ utilities, and application interaction.
 
 <div align="center">
 
-<img src="docs/evidence/architecture.png" alt="SauceDemo Playwright Automation Architecture" width="850">
+<img src="docs/evidence/architecture.PNG" alt="SauceDemo Playwright Automation Architecture" width="850">
 
 </div>
 
