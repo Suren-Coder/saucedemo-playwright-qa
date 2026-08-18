@@ -1,5 +1,5 @@
-import { expect, test } from '../src/fixtures/authenticatedContext';
-import { HeaderPage } from '../src/pages/HeaderPage';
+import { expect, test } from '../../../src/fixtures/authenticatedContext';
+import { HeaderPage } from '../../../src/pages/HeaderPage';
 
 test.describe('Logout', () => {
   test('LOGOUT-01 | Logout clears the session and blocks inventory access', async ({

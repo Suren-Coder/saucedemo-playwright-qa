@@ -1,15 +1,15 @@
-import { expect, test } from '../src/fixtures/authenticatedContext';
+import { expect, test } from '../../src/fixtures/authenticatedContext';
 import {
   CART_PRODUCTS,
   CHECKOUT_CUSTOMER,
   CHECKOUT_TOTALS,
-} from '../src/data/checkoutData';
-import { CartPage } from '../src/pages/CartPage';
-import { CheckoutCompletePage } from '../src/pages/CheckoutCompletePage';
-import { CheckoutInformationPage } from '../src/pages/CheckoutInformationPage';
-import { CheckoutOverviewPage } from '../src/pages/CheckoutOverviewPage';
-import { HeaderPage } from '../src/pages/HeaderPage';
-import { SortOption } from '../src/pages/InventoryPage';
+} from '../../src/data/checkoutData';
+import { CartPage } from '../../src/pages/CartPage';
+import { CheckoutCompletePage } from '../../src/pages/CheckoutCompletePage';
+import { CheckoutInformationPage } from '../../src/pages/CheckoutInformationPage';
+import { CheckoutOverviewPage } from '../../src/pages/CheckoutOverviewPage';
+import { HeaderPage } from '../../src/pages/HeaderPage';
+import { SortOption } from '../../src/pages/InventoryPage';
 
 test.describe('Purchase journey', () => {
   test('E2E-01 | Completes a purchase and logs out in a clean state', async ({
