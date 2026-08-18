@@ -192,7 +192,7 @@ Scenario matrix:
     - expect: The user returns to the cart or previous step without losing selected items.
     - expect: The cart remains in a valid state for a later successful purchase.
 
-### 4. Logout, end-to-end flow, and network validation
+### 4. Logout, and end-to-end flow
 
 **Seed:** `tests/seed.spec.ts`
 
@@ -214,20 +214,4 @@ Scenario matrix:
     - expect: The full purchase flow succeeds without user-visible error states.
     - expect: The order completion page appears at the end of the journey.
 
-#### 4.3. API-01 | Inventory and session requests are valid
 
-**File:** `tests/api.session-and-inventory.spec.ts`
-
-**Steps:**
-  1. Observe the login and inventory page loads during the main user flow.
-    - expect: The key requests resolve successfully and do not fail unexpectedly.
-    - expect: Session and page transitions behave as expected.
-
-#### 4.4. API-02 | Cart and checkout payloads are correct
-
-**File:** `tests/api.cart-and-checkout.spec.ts`
-
-**Steps:**
-  1. Inspect the cart and checkout request activity during the purchase flow.
-    - expect: Request payloads reflect the customer details and selected products correctly.
-    - expect: No unexpected failed requests occur during the critical purchase path.
