@@ -148,7 +148,7 @@ including individual test results and execution status.
 
 <div align="center">
 
-![Playwright HTML Report](docs\evidence\HTML-report.PNG)
+![Playwright HTML Report](docs/evidence/HTML-report.PNG)
 
 </div>
 
