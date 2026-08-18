@@ -11,6 +11,7 @@ export class ProductDetailPage {
   readonly addToCartButton: Locator;
   readonly backButton: Locator;
   readonly cartLink: Locator;
+  readonly cartBadge: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -20,6 +21,7 @@ export class ProductDetailPage {
     this.addToCartButton = page.locator('[data-test="add-to-cart"]');
     this.backButton = page.locator('[data-test="back-to-products"]');
     this.cartLink = page.locator('[data-test="shopping-cart-link"]');
+    this.cartBadge = page.locator('[data-test="shopping-cart-badge"]');
   }
 
   /**
@@ -69,14 +71,13 @@ export class ProductDetailPage {
    * Get cart badge count
    */
   async getCartBadgeCount(): Promise<string | null> {
-    const badge = this.page.locator('[data-test="shopping-cart-badge"]');
-    return badge.textContent().catch(() => null);
+    return this.cartBadge.textContent().catch(() => null);
   }
 
   /**
-   * Verify product was added to cart (by checking cart link visibility)
+   * Verify cart badge shows the expected number of selected items
    */
-  async verifyProductAddedToCart() {
-    await expect(this.cartLink).toBeVisible();
+  async verifyCartBadgeCount(expectedCount: number) {
+    await expect(this.cartBadge).toHaveText(expectedCount.toString());
   }
 }

@@ -1,122 +1,60 @@
-// spec: specs/README.md
-// seed: tests/seed.spec.ts
-
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../src/fixtures/authenticatedContext';
+import { ProductDetailPage } from '../src/pages/ProductDetailPage';
+import { SortOption } from '../src/pages/InventoryPage';
 
 test.describe('Inventory, product detail, and sorting', () => {
-  // Common authentication and setup
-  const baseUrl = 'https://www.saucedemo.com';
-  const standardUser = 'standard_user';
-  const password = 'secret_sauce';
-
-  test('PROD-01 | Inventory page renders expected product data', async ({ page }) => {
-    // Navigate to SauceDemo login page
-    await page.goto(baseUrl);
-
-    // Enter username and password
-    await page.locator('[data-test="username"]').fill(standardUser);
-    await page.locator('[data-test="password"]').fill(password);
-
-    // Click Login button to authenticate
-    await page.locator('[data-test="login-button"]').click();
-
-    // Verify Products heading is visible on inventory page
-    await expect(page.locator('[data-test="title"]')).toBeVisible();
-
-    // Verify first product name is visible
-    await expect(page.locator('[data-test="item-4-title-link"]')).toBeVisible();
-
-    // Verify product price is visible
-    await expect(page.getByText('$29.99')).toBeVisible();
-
-    // Verify add-to-cart button is visible
-    await expect(page.locator('[data-test="add-to-cart-sauce-labs-backpack"]')).toBeVisible();
-
-    // Verify cart badge is empty (not visible initially)
-    const badge = await page.evaluate(() => {
-      const cartBadge = document.querySelector('[data-test="shopping-cart-badge"]');
-      return cartBadge ? cartBadge.textContent : 'not found';
-    });
-    expect(badge).toBe('not found');
+  test('PROD-01 | Inventory page renders expected product data', async ({ authenticatedInventoryPage }) => {
+    await authenticatedInventoryPage.verifyInventoryPageLoaded();
+    await authenticatedInventoryPage.verifyProductCardsVisible();
+    await authenticatedInventoryPage.verifyProductPricesVisible();
+    await authenticatedInventoryPage.verifyAddToCartButtonsVisible();
+    await authenticatedInventoryPage.verifyCartBadgeEmpty();
   });
 
-  test('PROD-02 | Product detail page matches catalog state', async ({ page }) => {
-    // Navigate to SauceDemo login page
-    await page.goto(baseUrl);
+  test('PROD-02 | Product detail page matches catalog state', async ({ authenticatedInventoryPage }) => {
+    const expectedProductName = await authenticatedInventoryPage.getProductNameByIndex(0);
+    const [expectedProductPrice] = await authenticatedInventoryPage.getAllProductPrices();
+    const productDetailPage = new ProductDetailPage(authenticatedInventoryPage.page);
 
-    // Enter username and password
-    await page.locator('[data-test="username"]').fill(standardUser);
-    await page.locator('[data-test="password"]').fill(password);
+    await authenticatedInventoryPage.clickFirstProduct();
+    await productDetailPage.verifyProductDetailPageLoaded();
+    await expect(productDetailPage.productTitle).toHaveText(expectedProductName);
+    await expect(productDetailPage.productPrice).toHaveText(expectedProductPrice);
+    await expect(productDetailPage.backButton).toBeVisible();
+    await expect(productDetailPage.addToCartButton).toBeVisible();
 
-    // Click Login button to authenticate
-    await page.locator('[data-test="login-button"]').click();
+    await productDetailPage.clickAddToCart();
+    await productDetailPage.verifyCartBadgeCount(1);
 
-    // Wait for inventory to load
-    await expect(page.locator('[data-test="title"]')).toBeVisible();
-
-    // Click on Sauce Labs Backpack product to open detail page
-    await page.locator('[data-test="item-4-title-link"]').click();
-
-    // Verify product name on detail page matches inventory
-    await expect(page.locator('[data-test="inventory-item-name"]')).toBeVisible();
-
-    // Verify product price on detail page matches inventory
-    await expect(page.locator('[data-test="inventory-item-price"]')).toBeVisible();
-
-    // Verify back button to return to inventory
-    await expect(page.locator('[data-test="back-to-products"]')).toBeVisible();
-
-    // Verify add to cart button exists on product detail page
-    await expect(page.locator('[data-test="add-to-cart"]')).toBeVisible();
-
-    // Click add to cart button on product detail page
-    await page.locator('[data-test="add-to-cart"]').click();
-
-    // Verify cart badge shows 1 item
-    await expect(page.locator('[data-test="shopping-cart-link"]')).toBeVisible();
-
-    // Click back button to return to inventory list
-    await page.locator('[data-test="back-to-products"]').click();
-
-    // Verify we're back on inventory page
-    await expect(page.locator('[data-test="title"]')).toBeVisible();
+    await productDetailPage.clickBackButton();
+    await authenticatedInventoryPage.verifyInventoryPageLoaded();
   });
 
-  test('SORT-01 | Product sorting works for all supported options', async ({ page }) => {
-    // Navigate to SauceDemo login page
-    await page.goto(baseUrl);
+  test('SORT-01 | Product sorting works for all supported options', async ({ authenticatedInventoryPage }) => {
+    await expect(authenticatedInventoryPage.sortDropdown).toBeVisible();
 
-    // Enter username and password
-    await page.locator('[data-test="username"]').fill(standardUser);
-    await page.locator('[data-test="password"]').fill(password);
+    const productNames = await authenticatedInventoryPage.getAllProductNames();
+    const productPrices = await authenticatedInventoryPage.getAllProductPrices();
+    const numericPrice = (price: string) => Number(price.replace('$', ''));
 
-    // Click Login button to authenticate
-    await page.locator('[data-test="login-button"]').click();
+    await authenticatedInventoryPage.sortProducts(SortOption.NAME_A_TO_Z);
+    expect(await authenticatedInventoryPage.getAllProductNames()).toEqual(
+      [...productNames].sort((first, second) => first.localeCompare(second))
+    );
 
-    // Wait for inventory to load
-    await expect(page.locator('[data-test="title"]')).toBeVisible();
+    await authenticatedInventoryPage.sortProducts(SortOption.NAME_Z_TO_A);
+    expect(await authenticatedInventoryPage.getAllProductNames()).toEqual(
+      [...productNames].sort((first, second) => second.localeCompare(first))
+    );
 
-    // Verify sort dropdown exists
-    const sortDropdown = await page.evaluate(() => {
-      const select = document.querySelector('[data-test="product-sort-container"]');
-      return select ? 'found' : 'not found';
-    });
-    expect(sortDropdown).toBe('found');
+    await authenticatedInventoryPage.sortProducts(SortOption.PRICE_LOW_TO_HIGH);
+    expect(await authenticatedInventoryPage.getAllProductPrices()).toEqual(
+      [...productPrices].sort((first, second) => numericPrice(first) - numericPrice(second))
+    );
 
-    // Select Name A-Z sort option
-    await page.locator('[data-test="product-sort-container"]').selectOption(['az']);
-    await expect(page.locator('[data-test="item-4-title-link"]')).toBeVisible();
-
-    // Select Name Z-A sort option
-    await page.locator('[data-test="product-sort-container"]').selectOption(['za']);
-
-    // Select Price low-high sort option
-    await page.locator('[data-test="product-sort-container"]').selectOption(['lohi']);
-
-    // Select Price high-low sort option
-    await page.locator('[data-test="product-sort-container"]').selectOption(['hilo']);
-
-    // Verify products are still visible after sorting
-    await expect(page.locator('[data-test="inventory-item"]')).toHaveCount(6);
+    await authenticatedInventoryPage.sortProducts(SortOption.PRICE_HIGH_TO_LOW);
+    expect(await authenticatedInventoryPage.getAllProductPrices()).toEqual(
+      [...productPrices].sort((first, second) => numericPrice(second) - numericPrice(first))
+    );
   });
 });

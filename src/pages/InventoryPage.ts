@@ -15,6 +15,7 @@ export class InventoryPage {
   readonly productsLabel: Locator;
   readonly productCards: Locator;
   readonly productLinks: Locator;
+  readonly productPrices: Locator;
   readonly sortDropdown: Locator;
   readonly cartBadge: Locator;
   readonly cartLink: Locator;
@@ -24,6 +25,7 @@ export class InventoryPage {
     this.productsLabel = page.locator('[data-test="title"]');
     this.productCards = page.locator('[data-test="inventory-item"]');
     this.productLinks = page.locator('[data-test*="title-link"]');
+    this.productPrices = page.locator('[data-test="inventory-item-price"]');
     this.sortDropdown = page.locator('[data-test="product-sort-container"]');
     this.cartBadge = page.locator('[data-test="shopping-cart-badge"]');
     this.cartLink = page.locator('[data-test="shopping-cart-link"]');
@@ -156,20 +158,22 @@ export class InventoryPage {
   /**
    * Get product name by element index
    */
-  async getProductNameByIndex(index: number): Promise<string | null> {
-    return this.productLinks.nth(index).textContent();
+  async getProductNameByIndex(index: number): Promise<string> {
+    return this.productLinks.nth(index).innerText();
   }
 
   /**
    * Get all visible product names
    */
-  async getAllProductNames(): Promise<(string | null)[]> {
-    const count = await this.productLinks.count();
-    const names: (string | null)[] = [];
-    for (let i = 0; i < count; i++) {
-      names.push(await this.getProductNameByIndex(i));
-    }
-    return names;
+  async getAllProductNames(): Promise<string[]> {
+    return this.productLinks.allTextContents();
+  }
+
+  /**
+   * Get the visible product prices in their rendered order
+   */
+  async getAllProductPrices(): Promise<string[]> {
+    return this.productPrices.allTextContents();
   }
 
   /**
@@ -190,8 +194,7 @@ export class InventoryPage {
    * Verify product prices are visible
    */
   async verifyProductPricesVisible() {
-    const prices = this.page.locator('[data-test="inventory-item-price"]');
-    await expect(prices.first()).toBeVisible();
+    await expect(this.productPrices.first()).toBeVisible();
   }
 
   /**
