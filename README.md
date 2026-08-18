@@ -1,6 +1,6 @@
 # SauceDemo Playwright QA Automation
 
-> Portfolio-grade end-to-end test automation framework built with Playwright and TypeScript, demonstrating practical QA engineering practices, maintainable automation architecture, cross-browser testing, CI/CD, reporting, and AI-assisted test development.
+> Portfolio-grade end-to-end test automation framework built with Playwright and TypeScript, demonstrating practical QA engineering practices, maintainable automation architecture, cross-browser testing, reporting, and AI-assisted test development.
 
 ![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
@@ -128,7 +128,7 @@ functional coverage and confirm the behavior of the test framework.
 
 <div align="center">
 
-![Test Execution](docs\evidence\successful-test-execution.PNG)
+![Test Execution](docs/evidence/successful-test-execution.PNG)
 
 </div>
 
@@ -174,4 +174,82 @@ docs/
 └── ai-generated/
     ├── initial-test-plan.md
     └── automation-strategy.md
+
+## 🤖 AI-Assisted QA Engineering
+
+AI was incorporated into the development workflow as a **productivity,
+exploration, and engineering assistance layer** — not as a replacement
+for QA expertise or decision-making.
+
+### 🔎 Playwright MCP
+
+[Playwright MCP](https://github.com/microsoft/playwright-mcp) was used to
+support application exploration and browser-based investigation during
+the automation development process.
+
+It helped with:
+
+- Application exploration
+- UI inspection
+- Locator discovery
+- Understanding application behavior
+- Validating UI interactions before automation
+
+### 🧠 Playwright Agents
+
+Playwright Agents were used to accelerate selected automation activities,
+including:
+
+- Test planning
+- Test scenario development
+- Test script generation
+- Supporting automation implementation
+
+AI-generated output was reviewed and refined before being incorporated
+into the framework.
+
+### 👤 Human QA Ownership
+
+AI assistance did not replace QA engineering judgment.
+
+The following decisions remained under human QA review and ownership:
+
+- **Test scope**
+- **Risk assessment**
+- **Expected behavior**
+- **Test scenarios**
+- **Assertions**
+- **Locator strategy**
+- **Framework architecture**
+- **Maintainability decisions**
+- **Final validation**
+
+> **AI accelerated the process; QA engineering owned the quality.**
+
+---
+
+## 🏗️ Automation Architecture
+
+The framework follows a maintainable Playwright architecture that
+separates test scenarios, reusable fixtures, Page Objects, test data,
+utilities, and application interaction.
+
+<div align="center">
+
+<img src="docs/evidence/architecture.png" alt="SauceDemo Playwright Automation Architecture" width="850">
+
+</div>
+
+The architecture was designed with the following principles:
+
+- **Readable tests** focused on business scenarios
+- **Page Object Model** for reusable UI interactions
+- **Fixtures** for controlled and reusable test setup
+- **Centralized test data** separated from test logic
+- **Stable locators** to improve test reliability
+- **Reusable utilities** to reduce duplication
+- **Smoke, regression, and E2E layers** for different testing objectives
+
+This architecture allows the framework to remain **readable,
+maintainable, scalable, and easier to debug** as test coverage grows.
 
