@@ -137,7 +137,6 @@ functional coverage and confirm the behavior of the test framework.
 - Automated test execution
 - Test suite results
 - Successful scenario validation
-- Playwright test runner output
 
 ---
 
@@ -152,7 +151,6 @@ including individual test results and execution status.
 
 </div>
 
-**Why this matters:**
 
 The report provides a clear and structured way to review automation
 results and investigate failed scenarios.
@@ -203,7 +201,7 @@ including:
 - Test planning
 - Test scenario development
 - Test script generation
-- Supporting automation implementation
+- Self healing
 
 AI-generated output was reviewed and refined before being incorporated
 into the framework.
@@ -252,4 +250,27 @@ The architecture was designed with the following principles:
 
 This architecture allows the framework to remain **readable,
 maintainable, scalable, and easier to debug** as test coverage grows.
+
+
+
+
+## 🤝 Connect With Me
+
+<div align="center">
+
+### 👨‍💻 Suren Jayathunga
+
+**Software QA Engineer | Test Automation | Playwright | TypeScript**
+
+<br>
+
+<a href="mailto:surendj98@gmail.com">
+  <img src="https://img.shields.io/badge/Email-surendj98%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
+</a>
+
+<a href="https://www.linkedin.com/in/suren-jayathunga-qa" target="_blank">
+  <img src="https://img.shields.io/badge/LinkedIn-Suren%20Jayathunga-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+</a>
+
+</div>
 
