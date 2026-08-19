@@ -272,7 +272,7 @@ maintainable, scalable, and easier to debug** as test coverage grows.
   <img src="https://img.shields.io/badge/LinkedIn-Suren%20Jayathunga-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
 </a>
 
-<a href="docs/resume/Suren_Jayathunga_QA_Engineer_CV.pdf">
+<a href="docs/resume/Suren_Jayathunga_CV.pdf">
   <img src="https://img.shields.io/badge/Download%20CV-PDF-B31B1B?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Download CV">
 </a>
 
